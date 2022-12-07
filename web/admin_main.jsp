@@ -1,0 +1,108 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.chzu.bean.Product" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+
+    <title>flea market</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    <link href="./static/favicon.ico" rel="shortcut icon">
+    <script src="./lib/layui/layui.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./lib/common.js"></script>
+
+</head>
+<body>
+
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black">后台管理系统</div>
+        <!-- 头部区域（可配合layui 已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <!-- 移动端显示 -->
+            <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+                <i class="layui-icon layui-icon-spread-left"></i>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+                    <%
+                        out.print(request.getSession().getAttribute("admin_username"));
+                    %>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">设置</a></dd>
+                    <dd><a href="javascript:;" onclick="skip()">退出</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black" id="menu">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item"><a href="./admin_clientServlet">用户管理</a></li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">商品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./admin_liveProductServlet">生活用品</a></dd>
+                        <dd><a href="./admin_studyProductServlet">学习用品</a></dd>
+                        <dd><a href="./admin_elecProductServlet">数码产品</a></dd>
+                        <dd><a href="./admin_otherProductServlet">其它产品</a></dd>
+                        <!-- <dd><a href="">the links</a></dd> -->
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <h3 align="center" style="color: #555555; position: absolute; margin-top: 200px; margin-left: 400px;">信息将会在这里显示！</h3>
+    </div>
+
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ 2022 校园跳蚤市场</td>
+    </div>
+</div>
+
+<script>
+    function skip() {
+        <%
+        request.getSession().removeAttribute("admin_username");
+        request.getSession().removeAttribute("admin_password");
+        %>
+        window.location.replace("./index.jsp");
+    };
+</script>
+
+</body>
+</html>
+
